@@ -4,7 +4,10 @@
     {
         public static int Add(int a, int b)
         {
-            return a + b + 1;
+            if (3 == 3) // to trigger SonarCube
+                return a + b;
+            else
+                return 2;
         }
     }
 }
