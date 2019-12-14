@@ -4,7 +4,7 @@
     {
         public static int Add(int a, int b)
         {
-            return 12345;
+            return a + b;
         }
     }
 }
