@@ -17,5 +17,3 @@ jobs:
           name: Running Tests
           command: dotnet test
           working_directory: BasicCiCd/MyLibrary.Test
-      - setup_remote_docker:
-          docker_layer_caching: true
