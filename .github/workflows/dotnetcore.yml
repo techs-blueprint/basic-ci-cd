@@ -21,3 +21,5 @@ jobs:
       run: sed 's/GITHUB_TOKEN/${{ secrets.GITHUB_TOKEN }}/g' .nuget.config > nuget.config
     - name: Publish nuget
       run: dotnet nuget push BasicCiCd/MyLibrary/MyLibrary/bin/Release/*.nupkg -s "github"
+    - name: SonarCloud Scan
+      uses: SonarSource/sonarcloud-github-action@v1.1
