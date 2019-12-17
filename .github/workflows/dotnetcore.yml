@@ -14,10 +14,6 @@ jobs:
       with:
         dotnet-version: 2.2.108
     - name: Build with dotnet
-      run: dotnet build BasicCiCd/MyLibrary/MyLibrary.csproj --configuration Release
-    - name: Create nuget package
-      run: dotnet pack --no-build BasicCiCd/MyLibrary/MyLibrary/bin/Release
-    - name: Setup nuget config
-      run: sed 's/GITHUB_TOKEN/${{ secrets.GITHUB_TOKEN }}/g' .nuget.config > nuget.config
-    - name: Publish nuget
-      run: dotnet nuget push BasicCiCd/MyLibrary/MyLibrary/bin/Release/*.nupkg -s "github"
+      run: |
+        dotnet build BasicCiCd/MyLibrary/MyLibrary.csproj --configuration Release
+        dotnet test BasicCiCd/MyLibrary.Test/MyLibrary.Test.csproj
