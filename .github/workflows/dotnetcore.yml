@@ -1,4 +1,4 @@
-name: .NET Core
+name: net-core-build
 
 on: [push]
 
@@ -24,4 +24,4 @@ jobs:
         uses: sonarsource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: 82f84dfe31458a6c1679801ff6b4f10e4d4e5e39
+          SONAR_TOKEN: f9b9132307d31a96a85268c58c9366dbb83cf075
