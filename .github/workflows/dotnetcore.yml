@@ -14,8 +14,10 @@ jobs:
       with:
         dotnet-version: 2.2.108
     - name: Build with dotnet
-      run: |
-         dotnet build BasicCiCd/MyLibrary/MyLibrary.csproj --configuration Release
-         nuget source Add -Name "GitHub" -Source "https://nuget.pkg.github.com/techs-blueprint/basic-ci-cd/index.json" -UserName techs-blueprint
-         nuget pack
-         nuget push "basic-ci-cd.net.1.0.0.nupkg" -Source "GitHub"
+      run: dotnet build BasicCiCd/MyLibrary/MyLibrary.csproj --configuration Release
+    - name: Create nuget package
+      run: dotnet pack --no-build BasicCiCd/MyLibrary/MyLibrary/bin/Release
+    - name: Setup nuget config
+      run: sed 's/GITHUB_TOKEN/${{ secrets.GITHUB_TOKEN }}/g' .nuget.config > nuget.config
+    - name: Publish nuget
+      run: dotnet nuget push BasicCiCd/MyLibrary/MyLibrary/bin/Release/*.nupkg -s "github"
