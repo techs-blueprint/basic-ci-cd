@@ -15,3 +15,13 @@ jobs:
         dotnet-version: 2.2.108
     - name: Build with dotnet
       run: dotnet build BasicCiCd/MyLibrary/MyLibrary.csproj --configuration Release
+  sonarCloudTrigger:
+    name: SonarCloud Trigger
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: 82f84dfe31458a6c1679801ff6b4f10e4d4e5e39
